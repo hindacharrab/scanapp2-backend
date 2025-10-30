@@ -14,7 +14,7 @@ namespace ScanApp2.Services
 
         public GoogleSheetsStorageService()
         {
-            var credential = GoogleCredential.FromFile("Credentials/service-account.json")
+            var credential = GoogleCredential.FromFile("GOOGLE_SERVICE_JSON")
      .CreateScoped(SheetsService.Scope.Spreadsheets);
 
             _service = new SheetsService(new BaseClientService.Initializer()
