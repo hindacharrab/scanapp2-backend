@@ -1,0 +1,7 @@
+# Google credentials
+Credentials/service-account.json
+
+# Fichiers binaires / obj
+bin/
+obj/
+*.user
