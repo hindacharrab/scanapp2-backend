@@ -44,6 +44,9 @@ _service = new SheetsService(new BaseClientService.Initializer()
         public async Task AddScanAsync(ScanInputDto scan, string user, string site)
         {
             var range = "scans!A:D"; // adapte si nécessaire
+             // ✅ Correction du fuseau horaire : Maroc Standard Time
+    var moroccoZone = TimeZoneInfo.FindSystemTimeZoneById("Morocco Standard Time");
+    var moroccoTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, moroccoZone);
             var valueRange = new ValueRange
             {
                 Values = new List<IList<object>>
@@ -51,10 +54,10 @@ _service = new SheetsService(new BaseClientService.Initializer()
                     new List<object>
 
                     {
-                        scan.NumeroBL,
-                        DateTime.Now.ToString("yyyy-MM-dd HH:mm"),
-                        user ?? "Utilisateur inconnu",
-                        site ?? "Site non défini"
+                       scan.NumeroBL,
+                moroccoTime.ToString("yyyy-MM-dd HH:mm"), // ✅ heure exacte du Maroc
+                user ?? "Utilisateur inconnu",
+                site ?? "Site non défini"
                     }
                 }
             };
